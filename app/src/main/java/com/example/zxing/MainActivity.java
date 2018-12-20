@@ -30,14 +30,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+
+        setPermissions();//动态权限
+
+        //点击扫码
         btn_sweepCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setPermissions();
                 Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
                 startActivityForResult(intent,1001);
             }
         });
+
+        //点击生成普通二维码
         btn_generateCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,10 +50,13 @@ public class MainActivity extends AppCompatActivity {
                 QRCodeUtil.createQRcodeImage(generateCode, iv_code);
             }
         });
+
+        //点击生成中间带图片的二维码
         btn_generateCodeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String generateCode = tv_codeReturn.getText().toString();
+                QRCodeUtil.createQRcodeImage(MainActivity.this,generateCode, iv_code);
             }
         });
     }
@@ -61,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
         btn_generateCodeImage = findViewById(R.id.btn_generateCodeImage);
     }
 
+    /**
+     * 动态权限申请（相机）
+     */
     private void setPermissions() {
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
@@ -69,12 +80,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //扫码回掉
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==1001 && resultCode== Activity.RESULT_OK) {
             String result = data.getStringExtra(CaptureActivity.KEY_DATA);
-            tv_codeReturn.setText(result);
+            tv_codeReturn.setText(result);//显示在输入框中
             Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
         }
     }

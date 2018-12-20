@@ -21,11 +21,9 @@ public class QRCodeUtil {
     public static void createQRcodeImage(String url, ImageView im1) {
         int w= im1.getWidth();
         int h= im1.getHeight();
-        try
-        {
+        try {
             //判断URL合法性
-            if (url == null || "".equals(url) || url.length() < 1)
-            {
+            if (url == null || "".equals(url) || url.length() < 1) {
                 return;
             }
             Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
@@ -35,16 +33,11 @@ public class QRCodeUtil {
             int[] pixels = new int[w * h];
             //下面这里按照二维码的算法，逐个生成二维码的图片，
             //两个for循环是图片横列扫描的结果
-            for (int y = 0; y < h; y++)
-            {
-                for (int x = 0; x < w; x++)
-                {
-                    if (bitMatrix.get(x, y))
-                    {
+            for (int y = 0; y < h; y++) {
+                for (int x = 0; x < w; x++) {
+                    if (bitMatrix.get(x, y)) {
                         pixels[y * w + x] = 0xff000000;
-                    }
-                    else
-                    {
+                    } else {
                         pixels[y * w + x] = 0xffffffff;
                     }
                 }
@@ -55,8 +48,7 @@ public class QRCodeUtil {
             //显示到我们的ImageView上面
             im1.setImageBitmap(bitmap);
         }
-        catch (WriterException e)
-        {
+        catch (WriterException e) {
             e.printStackTrace();
         }
     }
@@ -65,11 +57,9 @@ public class QRCodeUtil {
     public static void createQRcodeImage(Context context, String url, ImageView im1) {
         int w= im1.getWidth();
         int h= im1.getHeight();
-        try
-        {
+        try {
             //判断URL合法性
-            if (url == null || "".equals(url) || url.length() < 1)
-            {
+            if (url == null || "".equals(url) || url.length() < 1) {
                 return;
             }
             Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
@@ -79,16 +69,11 @@ public class QRCodeUtil {
             int[] pixels = new int[w * h];
             //下面这里按照二维码的算法，逐个生成二维码的图片，
             //两个for循环是图片横列扫描的结果
-            for (int y = 0; y < h; y++)
-            {
-                for (int x = 0; x < w; x++)
-                {
-                    if (bitMatrix.get(x, y))
-                    {
+            for (int y = 0; y < h; y++) {
+                for (int x = 0; x < w; x++) {
+                    if (bitMatrix.get(x, y)) {
                         pixels[y * w + x] = 0xff000000;
-                    }
-                    else
-                    {
+                    } else {
                         pixels[y * w + x] = 0xffffffff;
                     }
                 }
@@ -100,8 +85,7 @@ public class QRCodeUtil {
             bitmap = addLogo(bitmap, BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round));
             im1.setImageBitmap(bitmap);
         }
-        catch (WriterException e)
-        {
+        catch (WriterException e) {
             e.printStackTrace();
         }
     }
