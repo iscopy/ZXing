@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_sweepCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击扫码二维码" />
+
+    <EditText
+        android:id="@+id/tv_codeReturn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="数据"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sweepCode"/>
+
+    <Button
+        android:id="@+id/btn_generateCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击生成二维码"
+        app:layout_constraintTop_toBottomOf="@+id/tv_codeReturn"/>
+
+    <Button
+        android:id="@+id/btn_generateCodeImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="点击有图生成二维码"
+        app:layout_constraintTop_toBottomOf="@+id/btn_generateCode"/>
+
+    <ImageView
+        android:id="@+id/iv_code"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_generateCodeImage" />
+
+
+</android.support.constraint.ConstraintLayout>
